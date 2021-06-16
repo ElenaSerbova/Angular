@@ -1,4 +1,31 @@
-<h2>{{todoItem.name | uppercase}}</h2>
+<h2>My list</h2>
+<ul class="items">
+    <li *ngFor="let todo of items" [ngClass]="todo.isComplete ? 'comlited' : ''">
+        {{todo.name}}
+    </li>
+</ul>
+
+<div *ngIf="items.length > 0; else elseBlock" [ngStyle]="styles">
+    {{items.length}} {{items.length == 1 ? 'item' : 'items'}}
+</div>
+<ng-template #elseBlock>
+    List is empty
+</ng-template>
+
+<div *ngIf="car!==undefined">
+    <div [ngSwitch]="car">
+        <p *ngSwitchCase="'Audi'">This is Audi</p>
+        <p *ngSwitchCase="'BMW'">This is BMW</p>
+        <p *ngSwitchCase="'Mercedes'">This is Mercedes</p>
+
+        <p *ngSwitchDefault>Car is undefined</p>
+    </div>
+</div>
+
+
+
+
+<!-- <h2>{{todoItem.name | uppercase}}</h2>
 <div><span>id:</span>{{todoItem.id}}</div>
 <div><span>name:</span>{{todoItem.name}}</div>
-<div><span>is complete:</span>{{todoItem.isComplete}}</div>
+<div><span>is complete:</span>{{todoItem.isComplete}}</div> -->
