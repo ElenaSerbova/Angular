@@ -7,18 +7,20 @@ import { ITEMS } from '../mock-todo-items';
   templateUrl: './todo-items.component.html',
   styleUrls: ['./todo-items.component.css']
 })
-export class TodoItemsComponent implements OnInit {
+export class TodoItemsComponent implements OnInit {  
 
-  styles = {
-    'color' : 'red',
-    'font-size': '0.8em'
-  }
+  summaryColor = 'red';
+  todoImgUri = './assets/todo.png'
 
   items: TodoItem[] = ITEMS; 
-  
-  car : any;
+  selectedItem: TodoItem | undefined; 
 
   constructor() { }
+
+  onSelect(todo: TodoItem, event: MouseEvent) : void{
+      this.selectedItem = todo;
+      console.log(event);
+  }
 
   ngOnInit(): void {
   }

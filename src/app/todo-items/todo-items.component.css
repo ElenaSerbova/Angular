@@ -18,6 +18,14 @@
     background-color: #DDD;
 }
 
-.items li.comlited{
+.items li.completed{
     text-decoration: line-through;
+}
+
+.row{
+    display:flex;
+}
+
+.row>div{
+    margin: 0 1em;
 }

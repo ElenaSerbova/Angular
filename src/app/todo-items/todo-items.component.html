@@ -1,31 +1,33 @@
-<h2>My list</h2>
-<ul class="items">
-    <li *ngFor="let todo of items" [ngClass]="todo.isComplete ? 'comlited' : ''">
-        {{todo.name}}
-    </li>
-</ul>
+<div class="row">
+    <div>
+        <h2>My list</h2>
+        <ul class="items">
+            <li *ngFor="let todo of items" [class.completed]="todo.isCompleted" (click)="onSelect(todo, $event)">        
+                <img [src]="todoImgUri" width="20px"/>
+                {{todo.name}}
+            </li>
+        </ul>
 
-<div *ngIf="items.length > 0; else elseBlock" [ngStyle]="styles">
-    {{items.length}} {{items.length == 1 ? 'item' : 'items'}}
-</div>
-<ng-template #elseBlock>
-    List is empty
-</ng-template>
+        <div *ngIf="items.length > 0; else elseBlock" [style.color]="summaryColor">
+            {{items.length}} {{items.length == 1 ? 'item' : 'items'}}
+        </div>
+        <ng-template #elseBlock>
+            List is empty
+        </ng-template>
+    </div>
 
-<div *ngIf="car!==undefined">
-    <div [ngSwitch]="car">
-        <p *ngSwitchCase="'Audi'">This is Audi</p>
-        <p *ngSwitchCase="'BMW'">This is BMW</p>
-        <p *ngSwitchCase="'Mercedes'">This is Mercedes</p>
-
-        <p *ngSwitchDefault>Car is undefined</p>
+    <div *ngIf="selectedItem !== undefined">
+        <h2>{{selectedItem?.name | uppercase}} DETAILS</h2>
+        <div><span>id:</span>{{selectedItem?.id}}</div>
+        <div>
+            <label>name:
+                <input type="text" [(ngModel)]="selectedItem.name" placeholder="name"/>
+            </label>
+        </div>
+        <div>
+            <label>is completed:
+               <input type="checkbox" [(ngModel)]="selectedItem.isCompleted"/>
+            </label>
+        </div> 
     </div>
 </div>
-
-
-
-
-<!-- <h2>{{todoItem.name | uppercase}}</h2>
-<div><span>id:</span>{{todoItem.id}}</div>
-<div><span>name:</span>{{todoItem.name}}</div>
-<div><span>is complete:</span>{{todoItem.isComplete}}</div> -->
