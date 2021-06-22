@@ -1,0 +1,14 @@
+<div *ngIf="todo !== undefined">
+    <h2>{{todo?.name | uppercase}} DETAILS</h2>
+    <div><span>id:</span>{{todo?.id}}</div>
+    <div>
+        <label>name:
+            <input type="text" [(ngModel)]="todo.name" placeholder="name"/>
+        </label>
+    </div>
+    <div>
+        <label>is completed:
+            <input type="checkbox" [(ngModel)]="todo.isCompleted"/>
+        </label>
+    </div>
+</div>

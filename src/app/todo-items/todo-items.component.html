@@ -15,19 +15,7 @@
             List is empty
         </ng-template>
     </div>
-
-    <div *ngIf="selectedItem !== undefined">
-        <h2>{{selectedItem?.name | uppercase}} DETAILS</h2>
-        <div><span>id:</span>{{selectedItem?.id}}</div>
-        <div>
-            <label>name:
-                <input type="text" [(ngModel)]="selectedItem.name" placeholder="name"/>
-            </label>
-        </div>
-        <div>
-            <label>is completed:
-               <input type="checkbox" [(ngModel)]="selectedItem.isCompleted"/>
-            </label>
-        </div> 
-    </div>
+    
+    <app-todo-form [todo]="selectedItem"></app-todo-form>
+    
 </div>

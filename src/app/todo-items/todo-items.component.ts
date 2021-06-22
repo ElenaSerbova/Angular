@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoItem } from '../models/todo.item';
-import { ITEMS } from '../mock-todo-items';
+import { TodoService } from '../services/todo-service';
 
 @Component({
   selector: 'app-todo-items',
@@ -12,10 +12,10 @@ export class TodoItemsComponent implements OnInit {
   summaryColor = 'red';
   todoImgUri = './assets/todo.png'
 
-  items: TodoItem[] = ITEMS; 
-  selectedItem: TodoItem | undefined; 
+  items: TodoItem[] = []; 
+  selectedItem?: TodoItem; 
 
-  constructor() { }
+  constructor( private todoService: TodoService) { }
 
   onSelect(todo: TodoItem, event: MouseEvent) : void{
       this.selectedItem = todo;
@@ -23,6 +23,7 @@ export class TodoItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.items = this.todoService.getTodos();
   }
 
 }
