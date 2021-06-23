@@ -23,7 +23,7 @@ export class TodoItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.items = this.todoService.getTodos();
+      this.todoService.getTodos().subscribe(items => this.items = items);
   }
 
 }

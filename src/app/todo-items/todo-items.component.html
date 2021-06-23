@@ -5,6 +5,7 @@
             <li *ngFor="let todo of items" [class.completed]="todo.isCompleted" (click)="onSelect(todo, $event)">        
                 <img [src]="todoImgUri" width="20px"/>
                 {{todo.name}}
+                <a [routerLink]="['edit', todo.id]">Edit</a>
             </li>
         </ul>
 
@@ -14,8 +15,5 @@
         <ng-template #elseBlock>
             List is empty
         </ng-template>
-    </div>
-    
-    <app-todo-form [todo]="selectedItem"></app-todo-form>
-    
+    </div>  
 </div>
