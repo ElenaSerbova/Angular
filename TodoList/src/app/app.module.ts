@@ -9,6 +9,8 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoService } from './services/todo-service';
+import { LogService } from './services/log.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [TodoService, LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

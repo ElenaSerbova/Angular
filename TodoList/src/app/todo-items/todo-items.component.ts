@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { TodoItem } from '../models/todo.item';
+import { LogService } from '../services/log.service';
 import { TodoService } from '../services/todo-service';
 
 @Component({
   selector: 'app-todo-items',
   templateUrl: './todo-items.component.html',
-  styleUrls: ['./todo-items.component.css']
+  styleUrls: ['./todo-items.component.css'],
+  providers:[]
 })
 export class TodoItemsComponent implements OnInit {  
 
@@ -15,7 +17,7 @@ export class TodoItemsComponent implements OnInit {
   items: TodoItem[] = []; 
   selectedItem?: TodoItem; 
 
-  constructor( private todoService: TodoService) { }
+  constructor( private todoService: TodoService, @Optional() private logService: LogService) { }
 
   onSelect(todo: TodoItem, event: MouseEvent) : void{
       this.selectedItem = todo;
@@ -23,7 +25,14 @@ export class TodoItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.todoService.getTodos().subscribe(items => this.items = items);
+      this.todoService.getTodos().subscribe(items => {
+        this.items = items;
+
+        if(this.logService){
+          this.logService.write(JSON.stringify(items));
+        }
+
+      });
   }
 
 }
